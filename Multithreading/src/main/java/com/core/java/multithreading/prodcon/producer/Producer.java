@@ -1,24 +1,24 @@
 /**
  * 
  */
-package com.core.java.multithreading.producer;
+package com.core.java.multithreading.prodcon.producer;
 
 import java.util.Random;
 import java.util.Scanner;
 
-import com.core.java.multithreading.IModel.IModelBlockingQueue;
+import com.core.java.multithreading.prodcon.intf.IModelShared;
 
 /**
  * @author Siddhant sahu
  *
  */
 public class Producer<T> implements Runnable {
-	private IModelBlockingQueue<T> queue;
+	private IModelShared<T> queue;
 
 	public Producer() {
 	}
 
-	public Producer(IModelBlockingQueue<T> queue) {
+	public Producer(IModelShared<T> queue) {
 		this.queue = queue;
 	}
 

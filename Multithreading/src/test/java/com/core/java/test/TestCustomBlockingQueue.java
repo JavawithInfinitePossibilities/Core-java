@@ -8,11 +8,12 @@ import java.util.concurrent.ArrayBlockingQueue;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.core.java.multithreading.consumer.Consumer;
 import com.core.java.multithreading.customblockingqueue.BlockingQueueArray;
 import com.core.java.multithreading.customblockingqueue.CustomBlockingQueueArray;
 import com.core.java.multithreading.customblockingqueue.CustomBlockingQueueList;
-import com.core.java.multithreading.producer.Producer;
+import com.core.java.multithreading.prodcon.consumer.Consumer;
+import com.core.java.multithreading.prodcon.producer.Producer;
+import com.core.java.multithreading.prodcon.shared.SharedObjectContainer;
 
 /**
  * @author Siddhant sahu
@@ -62,7 +63,7 @@ public class TestCustomBlockingQueue {
 		}
 	}
 
-	@Test
+	@Ignore
 	public void testBlockingQueueListArray() {
 		ArrayBlockingQueue<Integer> bucket = new ArrayBlockingQueue<>(5);
 		BlockingQueueArray<Integer> blockingQueue = new BlockingQueueArray<Integer>(bucket);
@@ -70,6 +71,23 @@ public class TestCustomBlockingQueue {
 		Thread pro = new Thread(producer);
 		pro.start();
 		Consumer<Integer> consumer = new Consumer<>(blockingQueue);
+		Thread con = new Thread(consumer);
+		con.start();
+		try {
+			pro.join();
+			con.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testSharedObjectProdCon() {
+		SharedObjectContainer<Integer> bucket = new SharedObjectContainer<>();
+		Producer<Integer> producer = new Producer<>(bucket);
+		Thread pro = new Thread(producer);
+		pro.start();
+		Consumer<Integer> consumer = new Consumer<>(bucket);
 		Thread con = new Thread(consumer);
 		con.start();
 		try {

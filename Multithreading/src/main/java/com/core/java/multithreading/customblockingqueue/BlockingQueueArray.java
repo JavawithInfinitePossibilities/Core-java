@@ -5,13 +5,13 @@ package com.core.java.multithreading.customblockingqueue;
 
 import java.util.concurrent.ArrayBlockingQueue;
 
-import com.core.java.multithreading.IModel.IModelBlockingQueue;
+import com.core.java.multithreading.prodcon.intf.IModelShared;
 
 /**
  * @author Siddhant sahu
  *
  */
-public class BlockingQueueArray<T> implements IModelBlockingQueue<T> {
+public class BlockingQueueArray<T> implements IModelShared<T> {
 	private ArrayBlockingQueue<T> bucket;
 
 	public BlockingQueueArray() {

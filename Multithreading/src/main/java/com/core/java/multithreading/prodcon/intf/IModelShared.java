@@ -1,13 +1,13 @@
 /**
  * 
  */
-package com.core.java.multithreading.IModel;
+package com.core.java.multithreading.prodcon.intf;
 
 /**
  * @author Siddhant sahu
  *
  */
-public interface IModelBlockingQueue<T> {
+public interface IModelShared<T> {
 	void add(T value) throws InterruptedException;
 
 	T remove() throws InterruptedException;

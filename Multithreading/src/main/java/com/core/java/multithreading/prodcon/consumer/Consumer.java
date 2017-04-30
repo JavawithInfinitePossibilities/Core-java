@@ -1,24 +1,24 @@
 /**
  * 
  */
-package com.core.java.multithreading.consumer;
+package com.core.java.multithreading.prodcon.consumer;
 
 import java.util.concurrent.TimeUnit;
 
-import com.core.java.multithreading.IModel.IModelBlockingQueue;
+import com.core.java.multithreading.prodcon.intf.IModelShared;
 
 /**
  * @author Siddhant sahu
  *
  */
 public class Consumer<T> implements Runnable {
-	private IModelBlockingQueue<T> queue;
+	private IModelShared<T> queue;
 
 	public Consumer() {
 		super();
 	}
 
-	public Consumer(IModelBlockingQueue<T> queue) {
+	public Consumer(IModelShared<T> queue) {
 		super();
 		this.queue = queue;
 	}
@@ -27,8 +27,8 @@ public class Consumer<T> implements Runnable {
 	public void run() {
 		while (true) {
 			try {
-				TimeUnit.SECONDS.sleep(2);
 				System.out.println("Concumer get the value :" + queue.remove());
+				TimeUnit.SECONDS.sleep(2);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
