@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.core.java.multithreading.synchronizetion;
+package com.core.java.multithreading.synchronization;
 
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;

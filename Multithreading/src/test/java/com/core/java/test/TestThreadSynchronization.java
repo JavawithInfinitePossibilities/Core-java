@@ -12,8 +12,8 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.core.java.multithreading.synchronizetion.CountdownLatchSynch;
-import com.core.java.multithreading.synchronizetion.CyclicBarrierSynch;
+import com.core.java.multithreading.synchronization.CountdownLatchSynch;
+import com.core.java.multithreading.synchronization.CyclicBarrierSynch;
 
 /**
  * @author Siddhant sahu
