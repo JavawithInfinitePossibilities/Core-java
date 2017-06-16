@@ -32,13 +32,18 @@ public class TestThreadSynchronization {
 		}
 	}
 
-	@Ignore
+	@Test
 	public void testCountdownletch() {
 		ExecutorService service = Executors.newFixedThreadPool(5);
 		CountDownLatch latch = new CountDownLatch(3);
 		for (int i = 0; i < 10; i++) {
 			CountdownLatchSynch countdownLatchSynch = new CountdownLatchSynch(latch, i);
 			service.execute(countdownLatchSynch);
+		}
+		try {
+			latch.await();
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
 		}
 		service.shutdown();
 		try {
@@ -48,11 +53,13 @@ public class TestThreadSynchronization {
 		}
 	}
 
-	@Test
+	@Ignore
 	public void testCyclicBarrier() {
 		ExecutorService service = Executors.newFixedThreadPool(5);
-		CyclicBarrier barrier = new CyclicBarrier(3);
-		for (int i = 0; i < 10; i++) {
+		CyclicBarrier barrier = new CyclicBarrier(3, () -> {
+			System.out.println("All parties are arrived at barrier, lets play");
+		});
+		for (int i = 0; i < 12; i++) {
 			CyclicBarrierSynch barrierSynch = new CyclicBarrierSynch(barrier, i);
 			service.submit(barrierSynch);
 		}
